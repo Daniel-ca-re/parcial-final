@@ -155,7 +155,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>altura de Cd</string>
+     <string>H Cd (0&lt;hd&lt;400)</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -163,12 +163,12 @@
      <rect>
       <x>1520</x>
       <y>480</y>
-      <width>101</width>
+      <width>121</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>altura de Co</string>
+     <string>H Co (0&lt;ho&lt;400)</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -181,7 +181,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>distancia entre cañones</string>
+     <string>dist&lt;x&gt;  (1000&lt;d&lt;1490)</string>
     </property>
    </widget>
    <widget class="QLCDNumber" name="lcdNumber">

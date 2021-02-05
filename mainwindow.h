@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include "canhon.h"
 #include "puntos_de_trayectoria.h"
+#include "radio_d_explocion.h"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -45,11 +46,16 @@ private:
     float t_limit;
     float trayectory_moment;
     void make_trayectory();
+    void make_collitions();
     float OtoD=2;
     float DtoO=1;
+    bool se_puede_avanzar=true;
+    radio_d_explocion *radO1;
+    radio_d_explocion *radD1;
+    radio_d_explocion *radO2;
+
+
     QList <puntos_de_trayectoria *> T1;
-    QList <puntos_de_trayectoria *> T2;
-    QList <puntos_de_trayectoria *> T3;
     QTimer * timer;
 
     int punto;

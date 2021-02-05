@@ -46,13 +46,14 @@ balas::balas(std::array<float, 2> posM, std::array<float, 2> posT, std::array<fl
     {
         angle+=90;
     }
-    std::cout<<angle<<'\n';
     float V=(deltH*velT[0]-D*velT[1])/(deltH*cos((3.1416/180)*angle)-D*sin((3.1416/180)*angle));
     vel={float(V*cos((3.1416/180)*angle)),float(V*sin((3.1416/180)*angle))};
+
     }
-    while(D/(vel[0]-velT[0])<0 || D/(vel[0]-velT[0])>tlim || abs(get_pos_at(D/(vel[0]-velT[0]))[0]-pos[0])<r);
-    colition_moment=(abs(D)-r)/abs(vel[0]-velT[0]);
+    while( D/(vel[0]-velT[0])>=tlim );
+    colition_moment=D/(vel[0]-velT[0])-(r/abs(vel[0]-velT[0]));
     setPos(pos[0],-pos[1]);
+    ipotetical_moment_colition=D/(vel[0]-velT[0]);
 }
 
 std::array<float, 2> balas::get_vel_at(float t)
@@ -78,7 +79,7 @@ float balas::get_colitio_moment()
 
 QRectF balas::boundingRect() const
 {
-        return QRectF(-5,-5,10,10);
+        return QRectF(-3,-3,6,6);
 }
 
 void balas::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

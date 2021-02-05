@@ -21,7 +21,7 @@ canhon::canhon(std::array<float, 2> p, char t, float d)
     else
     {
         RB1 =0.05*d;
-        RB2=0.005*d;
+        RB2=0.01*d;
     }
         setPos(pos[0],-pos[1]);
 
