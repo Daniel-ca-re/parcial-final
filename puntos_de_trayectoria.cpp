@@ -4,6 +4,12 @@ puntos_de_trayectoria::puntos_de_trayectoria()
 {
 
 }
+
+puntos_de_trayectoria::puntos_de_trayectoria(std::array<float, 2> p)
+{
+    pos=p;
+    setPos(pos[0],-pos[1]);
+}
 QRectF puntos_de_trayectoria::boundingRect() const
 {
             return QRectF(-1,-1,2,2);

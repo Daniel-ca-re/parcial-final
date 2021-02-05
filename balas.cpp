@@ -30,6 +30,7 @@ balas::balas(std::array<float, 2> posM, std::array<float, 2> posT, char canhon,f
     }
     while(get_pos_at(colition_moment/2)[1]>881);
     setPos(pos[0],-pos[1]);
+    ipotetical_moment_colition=(abs(D))/abs(vel[0]);
 }
 
 balas::balas(std::array<float, 2> posM, std::array<float, 2> posT, std::array<float, 2> velT, char canhon, float r , float tlim)

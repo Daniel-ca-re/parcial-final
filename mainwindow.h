@@ -43,6 +43,8 @@ private:
     float delt_t;
     float t;
     float t_limit;
+    float trayectory_moment;
+    void make_trayectory();
     float OtoD=2;
     float DtoO=1;
     QList <puntos_de_trayectoria *> T1;

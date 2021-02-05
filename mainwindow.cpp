@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     scene= new QGraphicsScene;
     ui->graphicsView->setScene(scene);
     scene->setSceneRect(0,0,1491,-881);
-    delt_t=1;
+    delt_t=1/60;
     t=0;
     t_limit=-1;
     punto=0;
@@ -79,9 +79,112 @@ void MainWindow::delete_all()
     }
 }
 
+void MainWindow::make_trayectory()
+{
+    if(t>trayectory_moment)
+    {
+    if(punto==1 )
+    {
+
+        if(Co.size()!=0)
+        {
+            if(Co.at(0)->balasA.size()!=0)
+            {
+                T1.push_back(new puntos_de_trayectoria(Co.at(0)->balasA.at(0)->get_pos_at(trayectory_moment)));
+                scene->addItem(T1.back());
+            }
+        }
+    }
+        if(punto==2)
+        {
+            if(Cd.size()!=0)
+            {
+                if(Cd.at(0)->balasA.size()!=0)
+                {
+                    T1.push_back(new puntos_de_trayectoria(Cd.at(0)->balasA.at(0)->get_pos_at(trayectory_moment)));
+                    scene->addItem(T1.back());
+                }
+            }
+        }
+
+
+
+        if(punto==3)
+        {
+            if(Cd.size()!=0 && t>OtoD)
+            {
+                if(Cd.at(0)->balasD.size()!=0)
+                {
+                    T1.push_back(new puntos_de_trayectoria(Cd.at(0)->balasD.at(0)->get_pos_at(trayectory_moment-OtoD)));
+                    scene->addItem(T1.back());
+                }
+
+            }
+            if(Co.size()!=0)
+            {
+                if(Co.at(0)->balasA.size()!=0)
+                {
+                    T1.push_back(new puntos_de_trayectoria(Co.at(0)->balasA.at(0)->get_pos_at(trayectory_moment)));
+                    scene->addItem(T1.back());
+                }
+            }
+        }
+        if(punto==4)
+        {
+            if(Cd.size()!=0)
+            {
+                if(Cd.at(0)->balasA.size()!=0)
+                {
+                    T1.push_back(new puntos_de_trayectoria(Cd.at(0)->balasA.at(0)->get_pos_at(trayectory_moment)));
+                    scene->addItem(T1.back());
+                }
+
+            }
+            if(Co.size()!=0 && t>DtoO)
+            {
+
+                if(Co.at(0)->balasD.size()!=0)
+                {
+                    T1.push_back(new puntos_de_trayectoria(Co.at(0)->balasD.at(0)->get_pos_at(trayectory_moment-DtoO)));
+                    scene->addItem(T1.back());
+                }
+
+            }
+        }
+        if(punto==5)
+        {
+            if(Cd.size()!=0 && t>OtoD)
+            {
+                if(Cd.at(0)->balasD.size()!=0)
+                {
+                    T1.push_back(new puntos_de_trayectoria(Cd.at(0)->balasD.at(0)->get_pos_at(trayectory_moment-OtoD)));
+                    scene->addItem(T1.back());
+                }
+
+            }
+            if(Co.size()!=0)
+            {
+                if(Co.at(0)->balasA.size()!=0)
+                {
+                    T1.push_back(new puntos_de_trayectoria(Co.at(0)->balasA.at(0)->get_pos_at(trayectory_moment)));
+                    scene->addItem(T1.back());
+                }
+                if(Co.at(0)->balasDD.size()!=0 && t>OtoD+DtoO)
+                {
+                    T1.push_back(new puntos_de_trayectoria(Co.at(0)->balasDD.at(0)->get_pos_at(trayectory_moment-OtoD-DtoO)));
+                    scene->addItem(T1.back());
+                }
+            }
+        }
+
+
+        trayectory_moment+=t_limit/80;
+    }
+}
+
 void MainWindow::advance_funtion()
 {
-    if(t<t_limit+1)
+    if(t<t_limit)
     {
         if(punto==1 || punto==2)
         {
@@ -223,6 +326,7 @@ void MainWindow::advance_funtion()
                 }
             }
         }
+        make_trayectory();
     }
 }
 
@@ -251,13 +355,13 @@ void MainWindow::on_pushButton_6_clicked()
 void MainWindow::primero()
 {
      Co.at(0)->balasA.push_back(new balas(Co.at(0)->get_pos(),Cd.at(0)->get_pos(),'O',Co.at(0)->RB1));
-     t_limit=Co.at(0)->balasA.at(0)->get_colitio_moment();
+     t_limit=Co.at(0)->balasA.at(0)->ipotetical_moment_colition;
 }
 
 void MainWindow::segundo()
 {
     Cd.at(0)->balasA.push_back(new balas(Cd.at(0)->get_pos(),Co.at(0)->get_pos(),'D',Cd.at(0)->RB1));
-    t_limit=Cd.at(0)->balasA.at(0)->get_colitio_moment();
+    t_limit=Cd.at(0)->balasA.at(0)->ipotetical_moment_colition;
 }
 
 void MainWindow::tercero()
@@ -307,6 +411,7 @@ void MainWindow::on_pushButton_clicked()
     primero();
     scene->addItem( Co.at(0)->balasA.at(0));
     t=0;
+    trayectory_moment=0;
 
 }
 
@@ -317,6 +422,7 @@ void MainWindow::on_pushButton_2_clicked()
     segundo();
     scene->addItem( Cd.at(0)->balasA.at(0));
     t=0;
+    trayectory_moment=0;
 }
 
 void MainWindow::on_pushButton_3_clicked()
@@ -327,6 +433,7 @@ void MainWindow::on_pushButton_3_clicked()
     scene->addItem( Cd.at(0)->balasD.at(0));
     scene->addItem( Co.at(0)->balasA.at(0));
     t=0;
+    trayectory_moment=0;
 }
 
 void MainWindow::on_verticalSlider_valueChanged(int value)
@@ -343,6 +450,7 @@ void MainWindow::on_pushButton_4_clicked()
     scene->addItem( Cd.at(0)->balasA.at(0));
     scene->addItem( Co.at(0)->balasD.at(0));
     t=0;
+    trayectory_moment=0;
 }
 
 void MainWindow::on_pushButton_5_clicked()
@@ -354,4 +462,5 @@ void MainWindow::on_pushButton_5_clicked()
     scene->addItem( Co.at(0)->balasA.at(0));
     scene->addItem( Co.at(0)->balasDD.at(0));
     t=0;
+    trayectory_moment=0;
 }

@@ -20,6 +20,7 @@ public:
     std::array <float,2> get_pos_at(float t);
     void bala_at(float t);
     float get_colitio_moment();
+    float ipotetical_moment_colition=0;
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget =nullptr);
 private:

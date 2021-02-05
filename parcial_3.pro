@@ -13,13 +13,15 @@ SOURCES += \
     canhon.cpp \
     main.cpp \
     mainwindow.cpp \
-    puntos_de_trayectoria.cpp
+    puntos_de_trayectoria.cpp \
+    radio_d_explocion.cpp
 
 HEADERS += \
     balas.h \
     canhon.h \
     mainwindow.h \
-    puntos_de_trayectoria.h
+    puntos_de_trayectoria.h \
+    radio_d_explocion.h
 
 FORMS += \
     mainwindow.ui

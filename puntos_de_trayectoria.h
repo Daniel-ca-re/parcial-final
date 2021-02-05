@@ -11,8 +11,8 @@ class puntos_de_trayectoria: public QGraphicsItem
 {
 public:
     puntos_de_trayectoria();
+    puntos_de_trayectoria(std::array <float,2> p);
     std::array <float,2> pos;
-    float momento;
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget =nullptr);
 };
