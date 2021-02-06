@@ -26,9 +26,14 @@ void radio_d_explocion::paint(QPainter *painter, const QStyleOptionGraphicsItem 
         painter->setBrush(Qt::red);
         painter->drawEllipse(boundingRect());
     }
-    else
+    else if(color=='y')
     {
         painter->setBrush(Qt::darkYellow);
+        painter->drawEllipse(boundingRect());
+    }
+    else
+    {
+        painter->setBrush(Qt::white);
         painter->drawEllipse(boundingRect());
     }
 }

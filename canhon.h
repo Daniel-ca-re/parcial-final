@@ -6,6 +6,8 @@
 #include <QPainter>
 #include <array>
 #include <QTimer>
+#include "radio_d_explocion.h"
+#include "plataforma.h"
 
 
 class canhon: public QGraphicsItem
@@ -20,6 +22,9 @@ public:
         QList <balas *> balasA;
         QList <balas *> balasD;
         QList <balas *> balasDD;
+
+        radio_d_explocion *rad;
+        plataforma *platform;
 
         QRectF boundingRect() const;
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget =nullptr);

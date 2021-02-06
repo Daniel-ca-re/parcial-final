@@ -48,8 +48,12 @@ void MainWindow::delete_all()
             scene->removeItem(Cd.at(0)->balasDD.at(0));
             Cd.at(0)->balasDD.removeAt(0);
         }
+        scene->removeItem(Cd.at(0)->platform);
+        scene->removeItem(Cd.at(0)->rad);
         scene->removeItem(Cd.at(0));
         Cd.removeAt(0);
+
+
     }
     while(Co.size() != 0)
     {
@@ -68,14 +72,20 @@ void MainWindow::delete_all()
             scene->removeItem(Co.at(0)->balasDD.at(0));
             Co.at(0)->balasDD.removeAt(0);
         }
+        scene->removeItem(Co.at(0)->platform);
+        scene->removeItem(Co.at(0)->rad);
         scene->removeItem(Co.at(0));
         Co.removeAt(0);
+
+
+
     }
     while(T1.size() != 0)
     {
         scene->removeItem(T1.at(0));
         T1.removeAt(0);
     }
+    Co_state=0;
     radD1->set_ini();
     radO1->set_ini();
     radO2->set_ini();
@@ -247,6 +257,7 @@ void MainWindow::advance_funtion()
                     Cd.at(0)->balasA.at(0)->bala_at(t);
 
                     radD1->set_pos(Cd.at(0)->balasA.at(0)->get_pos_at(t));
+                    rotateCd(180-Cd.at(0)->balasA.at(0)->angle);
 
                 }
                 if(Cd.at(0)->balasD.size()!=0)
@@ -264,6 +275,7 @@ void MainWindow::advance_funtion()
                 {
                     Co.at(0)->balasA.at(0)->bala_at(t);
                     radO1->set_pos(Co.at(0)->balasA.at(0)->get_pos_at(t));
+                    rotateCo(180-Co.at(0)->balasA.at(0)->angle,1);
                 }
                 if(Co.at(0)->balasD.size()!=0)
                 {
@@ -291,6 +303,7 @@ void MainWindow::advance_funtion()
                 {
                     Cd.at(0)->balasD.at(0)->bala_at(t-OtoD);
                     radD1->set_pos(Cd.at(0)->balasD.at(0)->get_pos_at(t-OtoD));
+                    rotateCd(180-Cd.at(0)->balasD.at(0)->angle);
 
                 }
                 if(Cd.at(0)->balasDD.size()!=0)
@@ -304,6 +317,7 @@ void MainWindow::advance_funtion()
                 {
                     Co.at(0)->balasA.at(0)->bala_at(t);
                     radO1->set_pos(Co.at(0)->balasA.at(0)->get_pos_at(t));
+                    rotateCo(180-Co.at(0)->balasA.at(0)->angle,1);
                 }
                 if(Co.at(0)->balasD.size()!=0)
                 {
@@ -328,6 +342,7 @@ void MainWindow::advance_funtion()
                 {
                     Cd.at(0)->balasD.at(0)->bala_at(t-OtoD);
                     radD1->set_pos(Cd.at(0)->balasD.at(0)->get_pos_at(t-OtoD));
+                    rotateCd(180-Cd.at(0)->balasD.at(0)->angle);
                 }
                 if(Cd.at(0)->balasDD.size()!=0)
                 {
@@ -340,6 +355,7 @@ void MainWindow::advance_funtion()
                 {
                     Co.at(0)->balasA.at(0)->bala_at(t);
                     radO1->set_pos(Co.at(0)->balasA.at(0)->get_pos_at(t));
+                    rotateCo(180-Co.at(0)->balasA.at(0)->angle,1);
                 }
                 if(Co.at(0)->balasD.size()!=0)
                 {
@@ -349,6 +365,8 @@ void MainWindow::advance_funtion()
                 {
                     Co.at(0)->balasDD.at(0)->bala_at(t-(OtoD+DtoO));
                     radO2->set_pos(Co.at(0)->balasDD.at(0)->get_pos_at(t-(OtoD+DtoO)));
+                    Co_state=1;
+                    rotateCo(180-Co.at(0)->balasDD.at(0)->angle,2);
                 }
             }
         }
@@ -362,6 +380,7 @@ void MainWindow::advance_funtion()
                 {
                     Cd.at(0)->balasA.at(0)->bala_at(t);
                     radD1->set_pos(Cd.at(0)->balasA.at(0)->get_pos_at(t));
+                    rotateCd(180-Cd.at(0)->balasA.at(0)->angle);
                 }
                 if(Cd.at(0)->balasD.size()!=0)
                 {
@@ -382,6 +401,7 @@ void MainWindow::advance_funtion()
                 {
                     Co.at(0)->balasD.at(0)->bala_at(t-DtoO);
                     radO1->set_pos(Co.at(0)->balasD.at(0)->get_pos_at(t-DtoO));
+                    rotateCo(180-Co.at(0)->balasD.at(0)->angle,1);
                 }
                 if(Co.at(0)->balasDD.size()!=0)
                 {
@@ -395,6 +415,7 @@ void MainWindow::advance_funtion()
         }
         make_trayectory();
         make_collitions();
+
     }
 }
 
@@ -412,16 +433,25 @@ void MainWindow::on_pushButton_6_clicked()
     float d=ui->dist->text().toFloat();
     Co. push_back(new canhon({0,ho},'O',d));
     Cd.push_back(new canhon({d,hd},'D',d));
-    scene->addItem(Co.at(0));
-    scene->addItem(Cd.at(0));
     radD1= new radio_d_explocion('y',Cd.at(0)->RB1);
     radO1= new radio_d_explocion('R',Co.at(0)->RB1);
     radO2= new radio_d_explocion('R',Co.at(0)->RB2);
+
+
+    scene->addItem(Co.at(0)->rad);
+    scene->addItem(Co.at(0));
+    scene->addItem(Co.at(0)->platform);
+    scene->addItem(Cd.at(0)->rad);
+    scene->addItem(Cd.at(0));
+    scene->addItem(Cd.at(0)->platform);
+
+
+
+
     scene->addItem(radD1);
     scene->addItem(radO1);
     scene->addItem(radO2);
 }
-
 
 
 
@@ -475,6 +505,23 @@ void MainWindow::quinto()
     }
     while( -Co.at(0)->balasA.at(0)->get_pos_at(Co.at(0)->balasDD.at(0)->ipotetical_moment_colition+DtoO+OtoD)[0] + Cd.at(0)->balasD.at(0)->get_pos_at(Co.at(0)->balasDD.at(0)->ipotetical_moment_colition+OtoD)[0]
            < Cd.at(0)->RB1);
+}
+
+void MainWindow::rotateCd(float ang)
+{
+    Cd.at(0)->setRotation(ang);
+}
+
+void MainWindow::rotateCo(float ang, int i)
+{
+    if(Co_state==0 && i==1)
+    {
+        Co.at(0)->setRotation(ang);
+    }
+    else
+    {
+        Co.at(0)->setRotation(ang);
+    }
 }
 
 void MainWindow::on_pushButton_clicked()

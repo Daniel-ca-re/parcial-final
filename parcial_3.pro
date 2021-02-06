@@ -13,6 +13,7 @@ SOURCES += \
     canhon.cpp \
     main.cpp \
     mainwindow.cpp \
+    plataforma.cpp \
     puntos_de_trayectoria.cpp \
     radio_d_explocion.cpp
 
@@ -20,6 +21,7 @@ HEADERS += \
     balas.h \
     canhon.h \
     mainwindow.h \
+    plataforma.h \
     puntos_de_trayectoria.h \
     radio_d_explocion.h
 

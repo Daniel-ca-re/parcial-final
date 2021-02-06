@@ -23,7 +23,11 @@ canhon::canhon(std::array<float, 2> p, char t, float d)
         RB1 =0.05*d;
         RB2=0.01*d;
     }
-        setPos(pos[0],-pos[1]);
+    setPos(pos[0],-pos[1]);
+    rad= new radio_d_explocion('w',35);
+    rad->set_pos(p);
+    platform= new plataforma(p);
+
 
 }
 
@@ -34,7 +38,7 @@ std::array<float, 2> canhon::get_pos()
 
 QRectF canhon::boundingRect() const
 {
-            return QRectF(-5,-5,10,10);
+            return QRectF(-15,-5,20,10);
 }
 
 void canhon::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

@@ -23,11 +23,14 @@ public:
     float ipotetical_moment_colition=0;
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget =nullptr);
+
+    float angle;
 private:
     std::array <float,2> pos;
     std::array <float,2> vel;
     float gravity=-9.8;
     char state;
     float colition_moment;
+
 };
 #endif // BALAS_H

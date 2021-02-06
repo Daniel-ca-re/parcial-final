@@ -18,7 +18,7 @@ balas::balas(std::array<float, 2> posM, std::array<float, 2> posT, char canhon,f
     float deltH= posT[1]-posM[1];
     do
     {
-        float angle =float(rand()%900)/10;
+        angle =float(rand()%900)/10;
         if(state=='D')
         {
             angle+=90;
@@ -39,18 +39,20 @@ balas::balas(std::array<float, 2> posM, std::array<float, 2> posT, std::array<fl
     pos=posM;
     float D = posT[0]-posM[0];
     float deltH= posT[1]-posM[1];
+    float Angle;
     do
     {
-    float angle =float(rand()%900)/10;
+    Angle =float(rand()%900)/10;
     if(state=='D')
     {
-        angle+=90;
+        Angle+=90;
     }
-    float V=(deltH*velT[0]-D*velT[1])/(deltH*cos((3.1416/180)*angle)-D*sin((3.1416/180)*angle));
-    vel={float(V*cos((3.1416/180)*angle)),float(V*sin((3.1416/180)*angle))};
+    float V=(deltH*velT[0]-D*velT[1])/(deltH*cos((3.1416/180)*Angle)-D*sin((3.1416/180)*Angle));
+    vel={float(V*cos((3.1416/180)*Angle)),float(V*sin((3.1416/180)*Angle))};
 
     }
-    while( D/(vel[0]-velT[0])>=tlim );
+    while( D/(vel[0]-velT[0])>=tlim || D/(vel[0]-velT[0])<0 );
+    angle=Angle;
     colition_moment=D/(vel[0]-velT[0])-(r/abs(vel[0]-velT[0]));
     setPos(pos[0],-pos[1]);
     ipotetical_moment_colition=D/(vel[0]-velT[0]);

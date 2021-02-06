@@ -65,6 +65,10 @@ private:
     void cuarto();
     void quinto();
 
+    void rotateCd(float ang);
+    void rotateCo(float ang, int i);
+    int Co_state=0;
+
 private slots:
     void on_pushButton_6_clicked();
 
