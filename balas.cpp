@@ -28,7 +28,7 @@ balas::balas(std::array<float, 2> posM, std::array<float, 2> posT, char canhon,f
         vel={float(V*cos((3.1416/180)*angle)),float(V*sin((3.1416/180)*angle))};
         colition_moment=(abs(D)-r)/abs(vel[0]);
     }
-    while(get_pos_at(colition_moment/2)[1]>881);
+    while(get_pos_at(colition_moment/2)[1]>1200);
     setPos(pos[0],-pos[1]);
     ipotetical_moment_colition=(abs(D))/abs(vel[0]);
 }
@@ -42,10 +42,10 @@ balas::balas(std::array<float, 2> posM, std::array<float, 2> posT, std::array<fl
     float Angle;
     do
     {
-    Angle =float(rand()%900)/10;
+    Angle =float(rand()%11000)/100-20;
     if(state=='D')
     {
-        Angle+=90;
+        Angle+=110;
     }
     float V=(deltH*velT[0]-D*velT[1])/(deltH*cos((3.1416/180)*Angle)-D*sin((3.1416/180)*Angle));
     vel={float(V*cos((3.1416/180)*Angle)),float(V*sin((3.1416/180)*Angle))};
