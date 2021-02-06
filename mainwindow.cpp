@@ -474,7 +474,7 @@ void MainWindow::tercero()
     {
     primero();
     }
-    while(t_limit-1.3<OtoD+OtoD);
+    while(t_limit-0.6<OtoD+OtoD);
     Cd.at(0)->balasD.push_back( new balas(Cd.at(0)->get_pos(),Co.at(0)->balasA.at(0)->get_pos_at(OtoD),Co.at(0)->balasA.at(0)->get_vel_at(OtoD),
                                           'D',Cd.at(0)->RB1,Co.at(0)->balasA.at(0)->get_colitio_moment()-OtoD));
 
@@ -497,7 +497,7 @@ void MainWindow::quinto()
         {
             tercero();
         }
-        while(Cd.at(0)->balasD.at(0)->get_colitio_moment()-DtoO<0.6 );
+        while(Cd.at(0)->balasD.at(0)->get_colitio_moment()-DtoO<0.3 );
         Co.at(0)->balasDD.push_back( new balas(Co.at(0)->get_pos(), Cd.at(0)->balasD.at(0)->get_pos_at(DtoO),Cd.at(0)->balasD.at(0)->get_vel_at(DtoO),
                                               'O',Co.at(0)->RB2, Cd.at(0)->balasD.at(0)->get_colitio_moment()-DtoO));
 }
